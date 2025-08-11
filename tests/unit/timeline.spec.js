@@ -1,13 +1,13 @@
 import { mount } from '@vue/test-utils'
-import Timeline from '@/components/Timeline'
+import Timeline from '@/components/Timeline.vue'
 
 // simple test data
 const timeline = {
   groups: [
     {
       id: 0,
-      content: 'Group 1'
-    }
+      content: 'Group 1',
+    },
   ],
   /*  WARN: it seems that timeline content is not rendered unless an item with both start and end is included
    *   This is a visjs issue, so just work with it here
@@ -18,16 +18,16 @@ const timeline = {
       group: 0,
       content: 'item 4',
       start: '2014-04-16',
-      end: '2014-04-19'
+      end: '2014-04-19',
     },
     {
       id: 6,
       group: 0,
       content: 'item 6',
       start: '2014-04-27',
-      type: 'point'
-    }
-  ]
+      type: 'point',
+    },
+  ],
 }
 
 describe('Timeline.vue', () => {
@@ -35,8 +35,8 @@ describe('Timeline.vue', () => {
     const wrapper = mount(Timeline, {
       propsData: {
         groups: timeline.groups,
-        items: timeline.items
-      }
+        items: timeline.items,
+      },
     })
     expect(wrapper.vm.timeline).not.toBeNull()
   })
@@ -46,8 +46,8 @@ describe('Timeline.vue', () => {
       propsData: {
         groups: timeline.groups,
         items: timeline.items,
-        options: { start: '2014-01-01', end: '2014-12-31', width: 1000 }
-      }
+        options: { start: '2014-01-01', end: '2014-12-31', width: 1000 },
+      },
     })
     expect(wrapper.find('.vis-item-content').exists()).toBe(true)
   })

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Network from '@/components/Network'
+import Network from '@/components/Network.vue'
 
 // simple test data
 const network = {
@@ -8,20 +8,20 @@ const network = {
     { id: 2, label: 'Node 2' },
     { id: 3, label: 'Node 3' },
     { id: 4, label: 'Node 4' },
-    { id: 5, label: 'Node 5' }
+    { id: 5, label: 'Node 5' },
   ],
   edges: [
     { id: 1, from: 1, to: 3 },
     { id: 2, from: 1, to: 2 },
     { id: 3, from: 2, to: 4 },
     { id: 4, from: 2, to: 5 },
-    { id: 5, from: 3, to: 3 }
+    { id: 5, from: 3, to: 3 },
   ],
   options: {
     nodes: {
-      shape: 'circle'
-    }
-  }
+      shape: 'circle',
+    },
+  },
 }
 
 describe('Network.vue', () => {
@@ -30,8 +30,8 @@ describe('Network.vue', () => {
       propsData: {
         nodes: network.nodes,
         edges: network.edges,
-        options: network.options
-      }
+        options: network.options,
+      },
     })
     expect(wrapper.vm.network).not.toBeNull()
   })
@@ -41,8 +41,8 @@ describe('Network.vue', () => {
       propsData: {
         nodes: network.nodes,
         edges: network.edges,
-        options: network.options
-      }
+        options: network.options,
+      },
     })
     // console.log(wrapper.html().split('</div>'))
     expect(wrapper.find('.vis-network').exists()).toBe(true)

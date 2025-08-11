@@ -3,6 +3,7 @@ import { reactive, ref } from 'vue'
 
 import { Timeline, Graph2d, Network } from 'vue3-visjs'
 
+const timelineMarker = ref(null)
 const timelineEvents = ref('')
 const timelineWithoutGroupsEvents = ref('')
 const timeline = reactive({
@@ -65,10 +66,24 @@ const timelineWithoutGroupsEvent = (eventName) => {
   if (timelineWithoutGroupsEvents.value.length > 500) timelineWithoutGroupsEvents.value = ''
   timelineWithoutGroupsEvents.value += `${eventName}, `
 }
+
+function setMarker($event) {
+  const eventProps = timelineMarker.value.getEventProperties($event.event)
+  if (eventProps.what === 'custom-time') {
+    timelineMarker.value.removeCustomTime(eventProps.customTime)
+  } else {
+    const id = new Date().getTime()
+    timelineMarker.value.addCustomTime(eventProps.time, id)
+    timelineMarker.value.setCustomTimeMarker('Add text...', id, true)
+  }
+}
 </script>
 
 <template>
   <div class="wrapper">
+    <h2>Timeline (Double-click for marker)</h2>
+    <Timeline ref="timelineMarker" @double-click="setMarker" />
+
     <h2>Timeline (without groups)</h2>
     <Timeline
       ref="timeline-withoutGroups"

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Graph2d from '@/components/Graph2d'
+import Graph2d from '@/components/Graph2d.vue'
 
 // simple test data
 const graph2d = {
@@ -9,37 +9,37 @@ const graph2d = {
       content: 'SquareShaded',
       options: {
         drawPoints: {
-          style: 'square' // square, circle
+          style: 'square', // square, circle
         },
         shaded: {
-          orientation: 'bottom' // top, bottom
-        }
-      }
+          orientation: 'bottom', // top, bottom
+        },
+      },
     },
     {
       id: 1,
       content: 'Bargraph',
       options: {
-        style: 'bar'
-      }
+        style: 'bar',
+      },
     },
     {
       id: 2,
       content: 'Blank',
-      options: { drawPoints: false }
+      options: { drawPoints: false },
     },
     {
       id: 3,
       content: 'CircleShaded',
       options: {
         drawPoints: {
-          style: 'circle' // square, circle
+          style: 'circle', // square, circle
         },
         shaded: {
-          orientation: 'top' // top, bottom
-        }
-      }
-    }
+          orientation: 'top', // top, bottom
+        },
+      },
+    },
   ],
   items: [
     { x: '2014-06-13', y: 60 },
@@ -64,14 +64,14 @@ const graph2d = {
     { x: '2014-06-27', y: 60, group: 3 },
     { x: '2014-06-28', y: 10, group: 3 },
     { x: '2014-06-29', y: 25, group: 3 },
-    { x: '2014-06-30', y: 30, group: 3 }
+    { x: '2014-06-30', y: 30, group: 3 },
   ],
   options: {
     defaultGroup: 'ungrouped',
     legend: true,
     start: '2014-06-10',
-    end: '2014-07-04'
-  }
+    end: '2014-07-04',
+  },
 }
 
 describe('Graph2d.vue', () => {
@@ -80,8 +80,8 @@ describe('Graph2d.vue', () => {
       propsData: {
         groups: graph2d.groups,
         items: graph2d.items,
-        options: graph2d.options
-      }
+        options: graph2d.options,
+      },
     })
     expect(wrapper.vm.graph2d).not.toBeNull()
   })
@@ -92,8 +92,8 @@ describe('Graph2d.vue', () => {
       propsData: {
         groups: graph2d.groups,
         items: graph2d.items,
-        options: graph2d.options
-      }
+        options: graph2d.options,
+      },
     })
     expect(wrapper.find('.vis-bar').exists()).toBe(true)
   })
