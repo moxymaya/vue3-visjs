@@ -9,7 +9,7 @@
     "build": "rollup --config build/rollup.config.js --environment BUILD:production",
     "build:es": "rollup --config build/rollup.config.js --format es --environment BUILD:production --file dist/vue-visjs.esm.js",
     "beforePublish": "npm run lint && npm run build",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
     "test": "NODE_ENV=test && vitest"
   },
   "files": [
