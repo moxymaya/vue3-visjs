@@ -59,17 +59,21 @@ export default {
       groups: null,
     },
   }),
-  watchEffect: {
+  watch: {
     options: {
       deep: true,
       handler() {
-        this.timeline.setOptions(this.options)
+        if (this.timeline) {
+          this.timeline.setOptions(this.options)
+        }
       },
     },
     selection: {
       deep: false,
       handler(v) {
-        this.timeline.setSelection(v)
+        if (this.timeline) {
+          this.timeline.setSelection(v)
+        }
       },
     },
   },
@@ -167,7 +171,7 @@ export default {
 
     this.visData.items = mountVisData(this, 'items', DataSet, DataView)
 
-    if (this.groups && this.groups.length > 0) {
+    if (this.groups && (Array.isArray(this.groups) ? this.groups.length > 0 : true)) {
       this.visData.groups = mountVisData(this, 'groups', DataSet, DataView)
       this.timeline = new Timeline(container, this.visData.items, this.visData.groups, this.options)
     } else {
@@ -184,7 +188,9 @@ export default {
     this.timeline = null
   },
   beforeUnmount() {
-    this.timeline.destroy()
+    if (this.timeline) {
+      this.timeline.destroy()
+    }
   },
 }
 </script>
