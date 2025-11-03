@@ -1,6 +1,6 @@
 {
-  "name": "vue3-visjs",
-  "version": "0.7.5",
+  "name": "vue3-visjs-m",
+  "version": "1.0.0",
   "private": false,
   "main": "./dist/vue-visjs.ssr.js",
   "module": "./dist/vue-visjs.esm.js",
